@@ -3,13 +3,13 @@ const { DataTypes } = require("sequelize");
 
 const User = sequelize.define("user", {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-  email: { type: DataTypes.STRING, unique: true },
-  username: { type: DataTypes.STRING, unique: true },
+  email: { type: DataTypes.STRING, unique: true, allowNull: false },
+  // username: { type: DataTypes.STRING, unique: true },
   password: { type: DataTypes.STRING, allowNull: false },
   role: { type: DataTypes.STRING, defaultValue: "USER" },
-  first_name: { type: DataTypes.STRING, allowNull: false },
-  last_name: { type: DataTypes.STRING },
-  image: { type: DataTypes.STRING },
+  // first_name: { type: DataTypes.STRING, allowNull: false },
+  // last_name: { type: DataTypes.STRING },
+  // image: { type: DataTypes.STRING },
 });
 
 const Event = sequelize.define("event", {
