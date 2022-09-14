@@ -1,3 +1,9 @@
+import styled from 'styled-components'
+
 export default function Registration() {
-  return <div>Registration</div>
+  return <RegWrapper>Registration</RegWrapper>
 }
+
+const RegWrapper = styled.div`
+    
+`
