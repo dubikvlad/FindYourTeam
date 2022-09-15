@@ -34,6 +34,7 @@ const HeaderContaner = styled.header`
   width: 100%;
   display: flex;
   align-items: center;
+  justify-content: center;
   background-color: ${({ theme }) => theme.colors.white};
   z-index: 1;
 `
