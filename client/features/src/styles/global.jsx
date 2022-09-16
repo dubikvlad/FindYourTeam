@@ -7,6 +7,10 @@ export default createGlobalStyle`
         *, *::before, *::after {
         box-sizing: border-box;
     }
+
+    ::placeholder {
+        color: rgba(24, 24, 24, 0.2);
+    }
     /*
     2. Remove default margin
     */

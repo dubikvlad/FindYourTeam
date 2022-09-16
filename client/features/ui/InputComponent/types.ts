@@ -1,19 +1,21 @@
-import { FieldError, FieldErrorsImpl, Merge } from 'react-hook-form'
-
 export interface IInputProps {
   name: string
   type: string
   register: any
+  placeholder: string
+  setValue: (value1: string, value2: string) => void
   watch?: string
-  setValue: () => void
-  error?: FieldError | Merge<FieldError, FieldErrorsImpl<any>>
-  required?: string
-  className?: string
-  placeholder?: string
+  error?: boolean | string | undefined
+  required?: string | boolean
+  className?: string | undefined
   pattern?: IPattern
   defaultValue?: string
   isSearch?: boolean
   maxLength?: number
+  mb?: number
+  mt?: number
+  ml?: number
+  mr?: number
 }
 
 interface IPattern {

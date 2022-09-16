@@ -1,78 +1,155 @@
-// import { memo, useState, FC } from 'react'
+import { memo, useState, FC } from 'react'
+import styled, { css } from 'styled-components'
 
-// import classes from './Input.module.scss'
-// import { IInputProps } from './types'
+import { IInputProps } from './types'
 
-// export const InputComponent: FC<IInputProps> = memo(
-//   ({
-//     name,
-//     type,
-//     className = null,
-//     required = null,
-//     watch = null,
-//     error = null,
-//     pattern = null,
-//     register,
-//     setValue,
-//     placeholder,
-//     defaultValue = null,
-//     isSearch = false,
-//     maxLength = null,
-//   }) => {
-//     const [passVisibility, setPassVisibility] = useState(false)
+const InputComponent: FC<IInputProps> = memo(
+  ({
+    name,
+    type,
+    className = undefined,
+    required = null,
+    watch = null,
+    error,
+    pattern = null,
+    register,
+    setValue,
+    placeholder,
+    defaultValue = null,
+    isSearch = false,
+    maxLength = null,
+    mb,
+    mt,
+    ml,
+    mr,
+  }) => {
+    const [passVisibility, setPassVisibility] = useState(false)
+    const [isFocused, setIsFocused] = useState(false)
+    console.log('mb', mb)
 
-//     const clearInputField = () => {
-//       setValue(name, '')
-//     }
+    const clearInputField = () => {
+      setValue(name, '')
+    }
 
-//     return (
-//       <>
-//         <div className={classes.inputContainer}>
-//           {isSearch && (
-//             <span className={classes.searchIcon}>
-//               <SearchIcon className={classes.search} width={24} height={24} />
-//             </span>
-//           )}
-//           <input
-//             id={name}
-//             type={passVisibility ? 'text' : type}
-//             className={`${classes.input} ${className} ${
-//               error && classes.helpErrorBorder
-//             } ${isSearch ? classes.paddingLeft : null}`}
-//             {...register(name, {
-//               required: required,
-//               pattern: {
-//                 value: pattern?.value,
-//                 message: pattern?.message,
-//               },
-//             })}
-//             placeholder={placeholder}
-//             defaultValue={defaultValue}
-//             maxLength={maxLength}
-//           />
+    return (
+      <>
+        <InputWrapper
+          className={className}
+          error={error}
+          isFocused={isFocused}
+          mb={mb}
+          mt={mt}
+          ml={ml}
+          mr={mr}
+        >
+          {isSearch && (
+            <span>
+              {/* <SearchIcon className={classes.search} width={24} height={24} /> */}
+            </span>
+          )}
+          <input
+            id={name}
+            type={passVisibility ? 'text' : type}
+            {...register(name, {
+              required: required,
+              pattern: {
+                value: pattern?.value,
+                message: pattern?.message,
+              },
+            })}
+            placeholder={placeholder}
+            defaultValue={defaultValue}
+            maxLength={maxLength}
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => setIsFocused(false)}
+          />
 
-//           <div className={classes.iconsContainer}>
-//             {watch && (
-//               <span
-//                 onClick={() => clearInputField()}
-//                 className={`${classes.icon} ${classes.iconClearInput}`}
-//               >
-//                 <CrossCircleIcon />
-//               </span>
-//             )}
+          <div>
+            {watch && (
+              <span onClick={() => clearInputField()}>
+                {/* <CrossCircleIcon /> */}
+              </span>
+            )}
 
-//             {type === 'password' && (
-//               <span
-//                 className={`${classes.icon} ${classes.iconPassword}`}
-//                 onClick={() => setPassVisibility(!passVisibility)}
-//               >
-//                 {passVisibility ? <OpenEyeIcon /> : <CloseEyeIcon />}
-//               </span>
-//             )}
-//           </div>
-//         </div>
-//         {error && <div>{error.message}</div>}
-//       </>
-//     )
-//   },
-// )
+            {type === 'password' && (
+              <span onClick={() => setPassVisibility(!passVisibility)}>
+                {/* {passVisibility ? <OpenEyeIcon /> : <CloseEyeIcon />} */}
+              </span>
+            )}
+          </div>
+        </InputWrapper>
+        {error && <Error>{error}</Error>}
+      </>
+    )
+  },
+)
+
+InputComponent.displayName = 'InputComponent'
+
+export default InputComponent
+
+type SInputWrapper = {
+  error: boolean | string | undefined
+  isFocused: boolean
+  mb?: number
+  mt?: number
+  ml?: number
+  mr?: number
+}
+
+const InputWrapper = styled.div<SInputWrapper>`
+  width: 100%;
+  margin: 10px 0 30px;
+
+  ${(p) =>
+    p.error &&
+    css`
+      margin-bottom: 0px !important;
+    `};
+
+  position: relative;
+
+  margin-bottom: ${(p) => p.mb && `${p.mb}px`};
+  margin-top: ${({ mt = null }) => mt && `${mt}px`};
+  margin-left: ${({ ml = null }) => ml && `${ml}px`};
+  margin-right: ${({ mr = null }) => mr && `${mr}px`};
+
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 1px;
+    bottom: 1px;
+    height: 1px;
+    width: ${(p) => (p.error || p.isFocused ? `100%` : `0`)};
+    background-color: ${(p) =>
+      p.error ? p.theme.colors.red : p.theme.colors.blue};
+    ${(p) =>
+      !!p.error &&
+      css`
+        margin-bottom: 0px;
+      `};
+    transition: width 0.3s;
+  }
+
+  input {
+    border: none;
+    padding: 10px 5px;
+    outline: none;
+    position: relative;
+    border: 1px solid transparent;
+    width: 100%;
+  }
+
+  &:hover {
+    &::after {
+      width: 100%;
+    }
+  }
+`
+
+const Error = styled.div`
+  color: ${({ theme }) => theme.colors.gray2};
+  height: 15px;
+  margin-bottom: 15px;
+`

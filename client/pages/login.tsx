@@ -1,8 +1,5 @@
 import LoginPage from '@/features/pages/Login'
 
-const Login = () => {
-  let a = false
+export default function Login() {
   return <LoginPage />
 }
-
-export default Login

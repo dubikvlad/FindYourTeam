@@ -7,19 +7,26 @@ import { StyledButton } from '@/features/src/styledComponents'
 function Header() {
   return (
     <HeaderContaner>
-      <Logo>
-        <LogoText>
-          <span>Find</span>
-          <span>Your</span>
-          <span>Team</span>
-        </LogoText>
-      </Logo>
+      <Link href="/">
+        <Logo>
+          <LogoText>
+            <span>Find</span>
+            <span>Your</span>
+            <span>Team</span>
+          </LogoText>
+        </Logo>
+      </Link>
       <Main>
         <MianWrap>
           <div></div>
-          <Link href="/login">
-            <Button>Login</Button>
-          </Link>
+          <div className="buttons">
+            <Link href="/registration">
+              <Button buttonType="transparent">Sign In</Button>
+            </Link>
+            <Link href="/login">
+              <Button ml={15}>Login</Button>
+            </Link>
+          </div>
         </MianWrap>
       </Main>
       <Side />
@@ -51,6 +58,7 @@ const Logo = styled.div`
   padding: 17px 0;
   height: 80px;
   color: ${({ theme }) => theme.colors.blue};
+  cursor: pointer;
 `
 
 const LogoText = styled.div`
@@ -82,6 +90,10 @@ const MianWrap = styled.div`
   display: flex;
   width: 100%;
   justify-content: space-between;
+
+  .buttons {
+    display: flex;
+  }
 `
 
 const Side = styled.div`

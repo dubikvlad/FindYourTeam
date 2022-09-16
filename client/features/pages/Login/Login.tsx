@@ -2,14 +2,19 @@ import React from 'react'
 import { useForm } from 'react-hook-form'
 import styled from 'styled-components'
 
-import { StyledButton } from '@/features/src/styledComponents'
-import { StyledPage, StyledContainer } from '@/features/src/styledComponents'
+import {
+  StyledButton,
+  StyledPage,
+  StyledContainer,
+} from '@/features/src/styledComponents'
+import { InputComponent } from '@/features/ui'
 export default function Login() {
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
+    setValue,
   } = useForm()
 
   return (
@@ -17,25 +22,28 @@ export default function Login() {
       <LoginWrapper>
         <Form>
           <div className="head">Email:</div>
-          <InputWrapper>
-            <input
-              type="text"
-              {...register('email')}
-              className="input"
-              placeholder="E-mail"
-            />
-          </InputWrapper>
+          <Input
+            register={register}
+            name="email"
+            type="text"
+            setValue={setValue}
+            placeholder="Email"
+            required
+            // error="error"
+            watch={watch('eamil')}
+          />
           <div className="head">Password:</div>
-          <InputWrapper>
-            <input
-              type="text"
-              {...register('password')}
-              className="input"
-              placeholder="Password"
-              autoComplete="off"
-            />
-          </InputWrapper>
-          <Button>Login</Button>
+          <Input
+            register={register}
+            name="password"
+            type="text"
+            setValue={setValue}
+            placeholder="Password"
+            required
+            error="error"
+            watch={watch('password')}
+          />
+          <Button type="submit">Login</Button>
         </Form>
       </LoginWrapper>
     </StyledPage>
@@ -74,26 +82,6 @@ const Form = styled.form`
   }
 `
 
-const InputWrapper = styled.div`
-  width: 100%;
-  margin: 20px 0 30px;
-  position: relative;
-
-  &::after {
-    content: '';
-    display: block;
-    position: absolute;
-    left: 1px;
-    bottom: 1px;
-    height: 1px;
-    width: 0px;
-    background-color: ${({ theme }) => theme.colors.blue};
-    transition: width 0.3s;
-  }
-
-  &:hover {
-    &::after {
-      width: 100%;
-    }
-  }
+const Input = styled(InputComponent)`
+  margin: 10px 0 30px;
 `
