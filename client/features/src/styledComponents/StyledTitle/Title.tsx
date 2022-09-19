@@ -2,9 +2,8 @@ import styled from 'styled-components'
 import { FC } from 'react'
 
 type TextProps = {
-  type?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | null
+  type?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
   bold?: boolean
-  lh?: number
   mt?: number
   ml?: number
   mr?: number
@@ -19,16 +18,45 @@ type TextProps = {
   children: any
 }
 
-export default function Text({ type, children = null }: TextProps) {
-  {
-    switch (type) {
-      case 'h1':
-        return <h1>{children}</h1>
-    }
-  }
+export default function Text({
+  type = 'h6',
+  children = null,
+  bold = true,
+  mt,
+  ml,
+  mr,
+  mb,
+  pt,
+  pl,
+  pr,
+  pb,
+  maxWidth,
+  align,
+  textColor,
+}: TextProps) {
+  return (
+    <TextStyle
+      as={type}
+      type={type}
+      bold={bold}
+      mt={mt}
+      ml={ml}
+      mr={mr}
+      mb={mb}
+      pt={pt}
+      pl={pl}
+      pr={pr}
+      pb={pb}
+      maxWidth={maxWidth}
+      align={align}
+      textColor={textColor}
+    >
+      {children}
+    </TextStyle>
+  )
 }
 const TextStyle = styled.p<TextProps>`
-  font-family: ${(p) => p.theme.fonts.Gotham};
+  font-family: ${({ theme }) => theme.fonts.Gotham};
   font-weight: ${({ bold = false }) => (bold ? 'bold' : 'normal')};
   color: ${({ textColor = null, theme = null }) =>
     textColor ?? theme?.colors.black};
@@ -49,5 +77,3 @@ const TextStyle = styled.p<TextProps>`
         : `max-width: ${maxWidth};`
       : null}
 `
-
-// export default Text
