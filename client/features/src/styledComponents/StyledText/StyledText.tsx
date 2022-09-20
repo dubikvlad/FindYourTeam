@@ -75,7 +75,6 @@ export const Text = styled.p<TextProps>`
         ? `height: ${height}px;`
         : `height: ${height};`
       : null}
-    transition: all 0.5s;
   overflow: hidden;
 `
 
