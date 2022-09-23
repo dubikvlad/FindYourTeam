@@ -8,6 +8,9 @@ export default function LinksDev() {
       <Link href={'/event'}>
         <a>event</a>
       </Link>
+      <Link href={'user'}>
+        <a>user</a>
+      </Link>
     </Links>
   )
 }

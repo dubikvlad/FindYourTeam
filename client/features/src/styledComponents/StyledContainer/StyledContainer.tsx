@@ -25,10 +25,10 @@ const Container = styled.div<ContainerProps>`
   margin-right: ${({ mr = null }) => !!mr && `${mr}px`};
 
   padding: ${(p) => (p.padding ? `${p.padding}` : '25px 30px')};
-  padding-bottom: ${({ pb = null }) => !!pb && `${pb}px`};
-  padding-top: ${({ pt = null }) => !!pt && `${pt}px`};
-  padding-left: ${({ pl = null }) => !!pl && `${pl}px`};
-  padding-right: ${({ pr = null }) => !!pr && `${pr}px`};
+  padding-bottom: ${({ pb = null }) => pb !== null && `${pb}px`};
+  padding-top: ${({ pt = null }) => pt !== null && `${pt}px`};
+  padding-left: ${({ pl = null }) => pl !== null && `${pl}px`};
+  padding-right: ${({ pr = null }) => pr !== null && `${pr}px`};
 `
 
 export default Container
