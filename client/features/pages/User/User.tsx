@@ -3,8 +3,11 @@ import {
   StyledPage,
   StyledContainer,
   StyledTitle,
+  StyledButton,
+  StyledText,
 } from '@/features/src/styledComponents'
 import styled from 'styled-components'
+import OpeningContainer from '@/features/components/OpeningContainer'
 import Image from 'next/image'
 import img from '@/assets/images/jpg/img.jpg'
 
@@ -21,12 +24,35 @@ export default function User({ data }: userData) {
           </ImgContainer>
           <UserInfo>
             <div className="user-data">
-              <StyledTitle type="h3" mb={15}>
-                Dmitry Kargaev
+              <StyledTitle type="h3">
+                Firstname Lastname
+                <span className="status"></span>
               </StyledTitle>
+              <div className="location">
+                Saint Petersburg, Russian Federation
+              </div>
+            </div>
+            <div>
+              Freelance UX/UI designer, 80+ projects in web design, mobile apps
+              (iOS & android) and creative projects. Open to offers.
+            </div>
+            <div className="buttons">
+              <StyledButton mr={15}>Contact info</StyledButton>
+              <StyledButton buttonType={'white'}>Contact info</StyledButton>
             </div>
           </UserInfo>
         </UserData>
+      </StyledContainer>
+      <StyledContainer mt={30}>
+        <StyledTitle type="h3">About</StyledTitle>
+        <OpeningContainer >
+          <StyledText small mt={15}>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+            Accusantium aliquam, eaque perspiciatis commodi recusandae fugit
+            dolorem. Voluptatum facilis consequatur sapiente autem illo ducimus,
+            laboriosam dolores ipsa ea debitis minus enim.
+          </StyledText>
+        </OpeningContainer>
       </StyledContainer>
     </StyledPage>
   )
@@ -67,8 +93,31 @@ const ImgContainer = styled.div`
 const UserInfo = styled.div`
   min-height: 150px;
   padding-top: 25px;
+  flex: 1;
 
   .user-data {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    width: 100%;
+  }
+
+  .status {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-left: 8px;
+    background-color: #0bd80b;
+  }
+
+  .location {
+    font-size: 12px;
+  }
+
+  .buttons {
+    display: flex;
+    margin-top: 15px;
   }
 `

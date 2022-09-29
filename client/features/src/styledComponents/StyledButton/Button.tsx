@@ -11,7 +11,7 @@ type ButtonProps = {
   pt?: number
   pl?: number
   pr?: number
-  buttonType?: 'transparent' | 'simple' | null
+  buttonType?: 'transparent' | 'simple' | 'white' | null
 }
 
 const Button = styled.button<ButtonProps>`
@@ -68,7 +68,6 @@ const Button = styled.button<ButtonProps>`
     css`
       background: transparent;
       color: ${(p) => p.theme.colors.blue};
-      /* border: 1px solid ${(p) => p.theme.colors.blue}; */
       transition: border 0.15s, box-shadow 0.18s;
       border: 1px solid transparent;
 
@@ -77,13 +76,8 @@ const Button = styled.button<ButtonProps>`
       }
 
       &:hover {
-        /* background: rgba(0, 0, 0, 0.3); */
         background: transparent;
-        /* background: ${(p) => p.theme.colors.blue}; */
-        /* color: white; */
-        /* box-shadow: 0px -10px 13px -13px rgba(2, 117, 177, 0.51) inset; */
         border: 1px solid transparent;
-        /* border: 1px solid ${(p) => p.theme.colors.blue}; */
         box-shadow: 0 1px 1px 0 #cfcfcf, 0 2px 5px 0 #cfcfcf;
 
         &::before {
@@ -101,6 +95,27 @@ const Button = styled.button<ButtonProps>`
 
       &::before {
         display: none;
+      }
+    `}
+
+  ${(p) =>
+    p.buttonType === 'white' &&
+    css`
+      background: ${(p) => p.theme.colors.white};
+      color: ${(p) => p.theme.colors.blue};
+      border: 1px solid ${(p) => p.theme.colors.blue};
+
+      &::before {
+        display: none;
+      }
+
+      &:hover {
+        background: transparent;
+        box-shadow: 0 1px 1px 0 #cfcfcf, 0 2px 5px 0 #cfcfcf;
+
+        &::before {
+          display: none;
+        }
       }
     `}
 `
