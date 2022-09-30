@@ -22,6 +22,7 @@ type TextProps = {
   textColor?: string
   style?: any
   className?: any
+  transform?: 'capitalize' | 'uppercase' | 'lowercase'
 }
 
 export const Text = styled.p<TextProps>`
@@ -76,6 +77,7 @@ export const Text = styled.p<TextProps>`
         : `height: ${height};`
       : null}
   overflow: hidden;
+  text-transform: ${({ transform }) => (transform ? transform : 'none')};
 `
 
 export default Text

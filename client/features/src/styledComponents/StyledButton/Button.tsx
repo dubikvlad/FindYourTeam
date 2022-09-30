@@ -92,6 +92,7 @@ const Button = styled.button<ButtonProps>`
       background: ${(p) => p.theme.colors.blue};
       color: ${(p) => p.theme.colors.white};
       border: 1px solid ${(p) => p.theme.colors.blue};
+      transition: border 0.15s, box-shadow 0.18s;
 
       &::before {
         display: none;
@@ -104,6 +105,8 @@ const Button = styled.button<ButtonProps>`
       background: ${(p) => p.theme.colors.white};
       color: ${(p) => p.theme.colors.blue};
       border: 1px solid ${(p) => p.theme.colors.blue};
+      transition: border 0.15s, box-shadow 0.18s;
+      
 
       &::before {
         display: none;
